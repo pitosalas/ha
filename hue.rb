@@ -1,13 +1,24 @@
-class Hue < Thor
-  desc "list", "list Hue items"
-  def list
-    puts "listing hue"
+class Hue
+  attr_accessor :context
+
+  def initialize(context)
+    @c = context
   end
 
-  desc "pair", "run pairing process to allow you to access the hue bridge"
   def pair
-    puts "Pairing... Run over to the bridge, and press the button"
+    @c[:useraccount] = "12345"
+    @c.save
+  end
+
+  def list
+    res = []
+    res << ["Light 1", "Bright", "11:03"]
+    res << ["Light 1", "Bright", "11:03"]
+    res << ["Light 1", "Bright", "11:03"]
+    res
+  end
+
+  def list_headers
+    ["Name", "State", "Time"]
   end
 end
-  
-
