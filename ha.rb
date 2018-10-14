@@ -3,19 +3,7 @@
 require 'thor'
 require 'yaml'
 require 'byebug'
-
-class Hue < Thor
-  desc "list", "list Hue items"
-  def list
-    puts "listing hue"
-  end
-
-  desc "pair", "run pairing process to allow you to access the hue bridge"
-  def pair
-    puts "Pairing... Run over to the bridge, and press the button"
-  end
-end
-  
+require 'hue'
 
 CONFIG_FILE_SPEC = "#{Dir.home}/.ha"
 class Ha < Thor
