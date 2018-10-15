@@ -14,3 +14,6 @@ Get "username" (which is a long hex string) from the bridge using instructions a
 ````
 GET /api/username/lights
 ````
+
+##### Discover IP address
+https://discovery.meethue.com -> [{"id":"001788fffe71c27d","internalipaddress":"10.0.0.89"}]

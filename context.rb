@@ -1,3 +1,5 @@
+require "yaml"
+
 class Context
   FILE_SPEC = "#{Dir.home}/.ha"
   attr_accessor :context

@@ -3,4 +3,6 @@
 source "https://rubygems.org"
 
 gem "thor"
-gem "byebug"
+gem "pry-byebug"
+gem "faraday"
+gem "terminal-table"

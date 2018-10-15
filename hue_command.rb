@@ -5,7 +5,7 @@ class HueCommand < Thor
   desc "list", "list Hue items"
   def list
     h = Hue.new(context)
-    puts Terminal::Table.new rows: h.list, headings: h.list_headers, style: {border_x: "", border_y: "", border_i: "", border_top: "", border_bottom: "" , all_separators: false}
+    puts Terminal::Table.new rows: h.list, headings: h.list_headers
   end
 
   desc "pair", "run pairing process to allow you to access the hue bridge"

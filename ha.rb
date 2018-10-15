@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
 require "thor"
-require "yaml"
-require "byebug"
+require 'pry-byebug'
+
 require_relative "hue_command"
 require_relative "context"
 
