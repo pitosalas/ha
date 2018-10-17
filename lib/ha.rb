@@ -2,11 +2,10 @@
 
 require "thor"
 require 'pry-byebug'
+require "ha/hue_command"
+require "ha/context"
 
-require_relative "hue_command"
-require_relative "context"
-
-class Ha < Thor
+class CLI < Thor
   desc "hello NAME", "say hello to NAME"
 
   def hello(name)
@@ -20,5 +19,3 @@ class Ha < Thor
     true
   end
 end
-
-Ha.start(ARGV)
