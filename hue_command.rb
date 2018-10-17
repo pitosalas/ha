@@ -4,8 +4,11 @@ require 'terminal-table'
 class HueCommand < Thor
   desc "list", "list Hue items"
   def list
-    h = Hue.new(context)
-    puts Terminal::Table.new rows: h.list, headings: h.list_headers
+    hue = Hue.new(context)
+    items = hue.get_sensors_a
+    items += hue.get_lights_a
+    items += hue.get_groups_a
+    puts Terminal::Table.new rows:items, headings: hue.list_headers
   end
 
   desc "pair", "run pairing process to allow you to access the hue bridge"
