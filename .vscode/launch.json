@@ -9,7 +9,7 @@
       "type": "Ruby",
       "request": "launch",
       "cwd": "${workspaceRoot}",
-      "program": "${workspaceRoot}/ha.rb",
+      "program": "${workspaceRoot}/lib/ha.rb",
       "args": ["hue", "list"]
     }
   ]

@@ -1,8 +1,8 @@
 require 'json'
 require 'faraday'
-require 'ha/sensor'
-require 'ha/light'
-require 'ha/group'
+require_relative 'sensor'
+require_relative 'light'
+require_relative 'group'
 
 BRIDGE_IP = "10.0.0.89"
 USERNAME = "3ClrGgbS5Nm9x2tc3Kbr7DxkaFvvqmewswPT5xzI"
@@ -11,12 +11,18 @@ USERNAME = "3ClrGgbS5Nm9x2tc3Kbr7DxkaFvvqmewswPT5xzI"
 class Hue
   attr_accessor :context
 
-  def initialize(context)
+  def initialize(context, bridge_state)
     @context = context
-    @conn = Faraday.new(url: "http://#{BRIDGE_IP}")
+    @bridge_state = bridge_state
     @groups = get_groups
     @sensors = get_sensors
     @lights = get_lights
+  end
+
+  def self.get_bridge_state
+    conn = Faraday.new(url: "http://#{BRIDGE_IP}")
+    get = conn.get("/api/#{USERNAME}/")
+    JSON.parse(get.body)
   end
 
   def pair

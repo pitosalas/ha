@@ -5,7 +5,7 @@ require "ha/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "HA"
-  spec.version       = VERSION
+  spec.version       = Ha::VERSION
   spec.authors       = ["Pito Salas"]
   spec.email         = ["pitosalas@gmail.com"]
 
@@ -36,6 +36,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_development_dependency "minitest"
   spec.add_development_dependency  'ruby-debug-ide'
+  
   spec.add_runtime_dependency "thor"
   spec.add_runtime_dependency  "faraday"
   spec.add_runtime_dependency  "terminal-table"

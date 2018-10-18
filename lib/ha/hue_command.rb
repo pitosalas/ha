@@ -1,5 +1,5 @@
-require 'ha/hue'
 require 'terminal-table'
+require_relative 'hue'
 
 class HueCommand < Thor
   desc "list", "list Hue items"

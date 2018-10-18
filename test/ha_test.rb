@@ -1,10 +1,11 @@
 require 'test_helper'
+
 class HaTest < Minitest::Test
   describe "has a version number" do
-    ::Ha::VERSION.wont_be_nil
+    it { wont_be_nil Ha::VERSION }
   end
 
   describe "it does something useful" do
-    assert false
+    it { 1.must_be_same_as 1 }
   end
 end
