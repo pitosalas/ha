@@ -20,8 +20,7 @@ class Hue
   end
 
   def self.get_bridge_state
-    unless @bridge_state
-      puts "fetch"
+    unless defined? @bridge_state
       conn = Faraday.new(url: "http://#{BRIDGE_IP}")
       get = conn.get("/api/#{USERNAME}/")
       @bridge_state = JSON.parse(get.body)
@@ -35,17 +34,17 @@ class Hue
   end
 
   def get_sensors
-    parsed = @bridge_state[:sensors]
+    parsed = @bridge_state["sensors"]
     parsed.to_a.map { |sensor_pair| Sensor.new(*sensor_pair)}
   end
 
   def get_lights
-    parsed = @bridge_state[:lights]
+    parsed = @bridge_state["lights"]
     parsed.to_a.map { |light_pair| Light.new(*light_pair, @groups)}
   end
 
   def get_groups
-    parsed = @bridge_state[:groups]
+    parsed = @bridge_state["groups"]
     parsed.to_a.map { |group_pair| Group.new(*group_pair)}
   end
 

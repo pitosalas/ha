@@ -14,7 +14,7 @@ class Light
   end
 
   def build_name hashvalue
-    hashvalue["name"] + " [ " + Group.owning(@number, @grouparray).first.name + " ]"
+    hashvalue["name"] + " [" + Group.owning(@number, @grouparray).first.name + "]"
   end
   def get_array(selectors)
     selectors.map { |key| @hashvalue[key] }

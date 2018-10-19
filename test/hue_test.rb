@@ -12,7 +12,7 @@ class HueTest < Minitest::Test
       state_h = Hue.get_bridge_state
       hue = Hue.new(::Context.new, state_h)
       res = hue.get_all_a ["name", "type", "on"]
-      puts res
+      res.length.must_be :>, 0
     end
   end
 end

@@ -5,8 +5,7 @@ class Context
   attr_accessor :context
 
   def initialize
-    puts "loading context"
-    if File.exists? FILE_SPEC
+    if File.exist? FILE_SPEC
       myfile = File.open(FILE_SPEC, "r")
       @context = YAML.load(myfile.read)
     end
