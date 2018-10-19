@@ -20,9 +20,13 @@ class Hue
   end
 
   def self.get_bridge_state
-    conn = Faraday.new(url: "http://#{BRIDGE_IP}")
-    get = conn.get("/api/#{USERNAME}/")
-    JSON.parse(get.body)
+    unless @bridge_state
+      puts "fetch"
+      conn = Faraday.new(url: "http://#{BRIDGE_IP}")
+      get = conn.get("/api/#{USERNAME}/")
+      @bridge_state = JSON.parse(get.body)
+    end
+    @bridge_state
   end
 
   def pair
@@ -31,23 +35,25 @@ class Hue
   end
 
   def get_sensors
-    get = @conn.get("/api/#{USERNAME}/sensors")
-    parsed = JSON.parse(get.body)
+    parsed = @bridge_state[:sensors]
     parsed.to_a.map { |sensor_pair| Sensor.new(*sensor_pair)}
   end
 
   def get_lights
-    get = @conn.get("/api/#{USERNAME}/lights")
-    parsed = JSON.parse(get.body)
+    parsed = @bridge_state[:lights]
     parsed.to_a.map { |light_pair| Light.new(*light_pair, @groups)}
   end
 
   def get_groups
-    get = @conn.get("/api/#{USERNAME}/groups")
-    parsed = JSON.parse(get.body)
+    parsed = @bridge_state[:groups]
     parsed.to_a.map { |group_pair| Group.new(*group_pair)}
   end
 
+  def get_all_a  selector
+    items = get_sensors_a selector
+    items += get_lights_a selector
+    items += get_groups_a selector
+  end
 
   def get_sensors_a selector
     get_sensors.map { |sensor| sensor.get_array(selector)}
