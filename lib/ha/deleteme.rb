@@ -1,10 +1,14 @@
-class Foo
-  def self.play
-    @y = nil
-    x = defined? @x
-    y = defined? @y
-    puts @x
+class Super
+  def initialize(number)
+    puts "Super #{number}"
   end
 end
 
-Foo.play
+class Sub < Super
+  def initialize(number)
+    super
+    puts "Sub #{number}"
+  end
+end
+
+Sub.new 100

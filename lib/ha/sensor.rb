@@ -1,15 +1,17 @@
-class Sensor
+require_relative "hue_resource"
+
+class Sensor < HueResource
   attr_reader :type, :on, :name
+
   def initialize(key, hashvalue)
-    @type = hashvalue["type"]
+    super
     key = analyze_type @type
     @on = hashvalue.dig("state", key)
-    @name = hashvalue["name"]
-    @hashvalue = {"key" => key, "on" => @on, "name" => @name, "type" => @type}
+    @state.merge! ({"key" => key, "on" => @on})
   end
 
   def get_array(selectors)
-    selectors.map { |key| @hashvalue[key] }
+    selectors.map { |key| @state[key] }
   end
 
   def analyze_type type
@@ -22,7 +24,7 @@ class Sensor
       key = "flag"
     elsif type == "Daylight"
       key = "daylight"
-    end
+    end      
     key
   end
 

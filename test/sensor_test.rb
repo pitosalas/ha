@@ -3,15 +3,20 @@ require_relative 'test_helper'
 class HueTest < Minitest::Test
 
   describe "Test Sensor class" do
-    it "can be constructred" do
-      sens = Sensor.new
+    before do
+      @key = "1"
+      @hash = {"state"=>{"daylight"=>true, "lastupdated"=>"2018-10-19T11:02:00"}, "config"=>{"on"=>true, "configured"=>true, "sunriseoffset"=>0, "sunsetoffset"=>0}, "name"=>"Daylight", "type"=>"Daylight", "modelid"=>"PHDL00", "manufacturername"=>"Philips", "swversion"=>"1.0"}
     end
 
-    it "returns all devices in a single array" do
-      # state_h = Hue.get_bridge_state
-      # hue = Hue.new(::Context.new, state_h)
-      # res = hue.get_all_a ["name", "type", "on"]
-      # res.length.must_be :>, 0
+    it "can return the name property" do
+      sens = Sensor.new(@key, @hash)
+      sens.get_array(["name"]).first.must_equal "Daylight"
     end
+    
+    it "can return the name property" do
+      sens = Sensor.new(@key, @hash)
+      sens.get_array(["on"]).first.must_equal true
+    end
+
   end
 end

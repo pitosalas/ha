@@ -1,4 +1,5 @@
-class Group
+require_relative "hue_resource"
+class Group  < HueResource
   attr_reader :type, :on, :name, :lights
   def initialize(key, hashvalue)
     @type = hashvalue["type"]
