@@ -1,4 +1,4 @@
-require 'test_helper'
+require_relative 'test_helper'
 
 class HaTest < Minitest::Test
   describe "has a version number" do

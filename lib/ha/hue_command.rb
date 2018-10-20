@@ -1,4 +1,4 @@
-require 'terminal-table'
+require_relative 'cli_table'
 require_relative 'hue'
 
 class HueCommand < Thor
@@ -7,7 +7,10 @@ class HueCommand < Thor
   def list
     hue = Hue.new(context, Hue.get_bridge_state)
     items = hue.get_all_a list_headers
-    puts Terminal::Table.new rows:items, headings: list_headers
+    table = CliTable.new
+    table.headers = list_headers
+    table.rows =  hue.get_all_a list_headers
+    puts table.render
   end
 
   desc "pair", "run pairing process to allow you to access the hue bridge"

@@ -5,7 +5,7 @@ require_relative 'light'
 require_relative 'group'
 
 BRIDGE_IP = "10.0.0.89"
-USERNAME = "3ClrGgbS5Nm9x2tc3Kbr7DxkaFvvqmewswPT5xzI"
+USERNAME = "78UEGUotX3otmWxbhiucELCLiiKmaD9E2O5YW-d1"
 
 
 class Hue
