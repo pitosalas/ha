@@ -25,7 +25,7 @@ class HueCommand < Thor
   end
   
   def list_headers
-    ["name", "type", "on"]
+    ["id", "name", "type", "on"]
   end
   
 end

@@ -2,19 +2,18 @@ require_relative "hue_resource"
 class Group  < HueResource
   attr_reader :type, :on, :name, :lights
   def initialize(key, hashvalue)
-    @type = hashvalue["type"]
-    @lights_s = hashvalue["lights"].join(",")
+    super
     @lights = hashvalue["lights"]
-    @name = hashvalue["name"]
-    @hashvalue = {"key" => key, "on" => @lights_s, "name" => @name, "type" => @type}
+    @lights_s = hashvalue["lights"].join(",")
+    gen_reskey("grp  ")
+    @state.merge! ({"on" =>@lights_s, "name" => @name, "type" => @type})
   end
 
   def get_array(selectors)
-    selectors.map { |key| @hashvalue[key] }
+    selectors.map { |key| @state[key] }
   end
 
   def self.owning(number, grouparray)
     grouparray.select { |group| group.lights.include? number}
   end
-
 end

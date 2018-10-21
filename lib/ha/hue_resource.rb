@@ -4,6 +4,10 @@ class HueResource
     @lastupdated = @hash_value.dig("state", "lastupdated")
     @type = hash_value["type"]
     @name = hash_value["name"]
-    @state = {"lastupdated" => @lastupdated, "type" => @type, "name" => @name}
+    @state = { "key"=> key, "lastupdated" => @lastupdated, "type" => @type, "name" => @name}
+  end
+
+  def gen_reskey(type)
+    @state.merge!({ "id" => type + @state["key"]})
   end
 end

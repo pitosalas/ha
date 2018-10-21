@@ -7,7 +7,8 @@ class Sensor < HueResource
     super
     key = analyze_type @type
     @on = hashvalue.dig("state", key)
-    @state.merge! ({"key" => key, "on" => @on})
+    gen_reskey("sens ")
+    @state.merge! ({"on" => @on})
   end
 
   def get_array(selectors)

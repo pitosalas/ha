@@ -21,13 +21,13 @@ class CliTable
 
   def header_render
     result = ""
-    @headers.each { |h| result << (" %10s" % h)  }
+    @headers.each { |h| result << (" %15s" % h)  }
     result
   end
 
   def row_render row
     result = ""
-    row.each { |c| result << (" %10s" % format_value(c)) }
+    row.each { |c| result << (" %15s" % format_value(c)) }
     result
   end
 

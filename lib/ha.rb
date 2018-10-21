@@ -1,4 +1,3 @@
-#!/usr/bin/env ruby
 require "thor"
 require 'pry-byebug'
 require_relative "ha/version"
@@ -21,5 +20,3 @@ module Ha
     end
   end
 end
-
-Ha::CLI.start(ARGV)
