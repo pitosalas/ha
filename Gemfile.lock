@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    Ha (0.2.0)
+    Ha (0.3.0)
       faraday (~> 0)
       thor (~> 0)
 
