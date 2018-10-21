@@ -1,10 +1,9 @@
 PATH
   remote: .
   specs:
-    HA (0.1.0)
-      faraday
-      terminal-table
-      thor
+    Ha (0.2.0)
+      faraday (~> 0)
+      thor (~> 0)
 
 GEM
   remote: https://rubygems.org/
@@ -22,23 +21,20 @@ GEM
     pry-byebug (3.6.0)
       byebug (~> 10.0)
       pry (~> 0.10)
-    rake (12.3.1)
+    rake (0.9.6)
     ruby-debug-ide (0.6.1)
       rake (>= 0.8.1)
-    terminal-table (1.8.0)
-      unicode-display_width (~> 1.1, >= 1.1.1)
     thor (0.20.0)
-    unicode-display_width (1.4.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  HA!
+  Ha!
   minitest
   pry-byebug
-  rake
-  ruby-debug-ide
+  rake (~> 0)
+  ruby-debug-ide (~> 0)
 
 BUNDLED WITH
    1.16.5
