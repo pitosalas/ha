@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "ha/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "HA"
+  spec.name          = "Ha"
   spec.version       = Ha::VERSION
   spec.authors       = ["Pito Salas"]
   spec.email         = ["pitosalas@gmail.com"]
@@ -17,10 +17,7 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
-  spec.require_paths = ["lib"]
-
-  puts executables
-  
+  spec.require_paths = ["lib"]  
   spec.add_development_dependency "pry-byebug", '~> 0'
   spec.add_development_dependency "rake", '~> 0'
   spec.add_development_dependency "minitest", '~> 0'
@@ -28,6 +25,4 @@ Gem::Specification.new do |spec|
   
   spec.add_runtime_dependency "thor", '~> 0'
   spec.add_runtime_dependency  "faraday", '~> 0'
-
-  
 end
