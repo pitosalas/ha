@@ -10,5 +10,3 @@ class Sub < Super
     puts "Sub #{number}"
   end
 end
-
-Sub.new 100

@@ -1,12 +1,11 @@
 require_relative 'cli_table'
 require_relative 'hue'
 
+# The 'hue' commmands
 class HueCommand < Thor
   desc "list", "list Hue items"
-  
   def list
     hue = Hue.new(context, Hue.get_bridge_state)
-    items = hue.get_all_a list_headers
     table = CliTable.new
     table.headers = list_headers
     table.rows =  hue.get_all_a list_headers
@@ -23,9 +22,8 @@ class HueCommand < Thor
   def context
     Context.new
   end
-  
+
   def list_headers
     ["id", "name", "type", "on"]
   end
-  
 end

@@ -1,5 +1,6 @@
 require_relative "hue_resource"
 
+# Represent Hue Sensors
 class Sensor < HueResource
   attr_reader :type, :on, :name
 
@@ -25,7 +26,7 @@ class Sensor < HueResource
       key = "flag"
     elsif type == "Daylight"
       key = "daylight"
-    end      
+    end
     key
   end
 
