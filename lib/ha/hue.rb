@@ -9,7 +9,6 @@ USERNAME = "78UEGUotX3otmWxbhiucELCLiiKmaD9E2O5YW-d1"
 
 
 class Hue
-  attr_accessor :context
 
   def initialize(context, bridge_state)
     @context = context

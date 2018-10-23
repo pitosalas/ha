@@ -1,7 +1,5 @@
 require_relative "hue_resource"
 class Light < HueResource
-  
-  attr_reader :type, :on, :name
 
   def initialize(key, hashvalue, grouparray)
     super(key, hashvalue)
