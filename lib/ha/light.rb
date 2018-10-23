@@ -9,14 +9,16 @@ class Light < HueResource
     @combinedsate = "#{@onstate} (#{@brightstate})"
     @number = key
     @group = Group.owning(key, grouparray)
-    gen_reskey("lite ")
+    gen_reskey("l")
+    build_name
     @state.merge! ({"on" => @combinedsate})
   end
 
-  def build_name hashvalue
-    hashvalue["name"] + " [" + Group.owning(@number, @grouparray).first.name + "]"
+  def build_name
+    @state["detail"] += " in " + Group.owning(@number, @grouparray).first.name
   end
-  def get_array(selectors)
+  
+  def array(selectors)
     selectors.map { |key| @state[key] }
   end
 end

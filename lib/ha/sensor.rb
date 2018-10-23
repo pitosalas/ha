@@ -2,29 +2,29 @@ require_relative "hue_resource"
 
 # Represent Hue Sensors
 class Sensor < HueResource
-  attr_reader :type, :on, :name
+  attr_reader :detail, :on, :name
 
   def initialize(key, hashvalue)
     super
-    key = analyze_type @type
+    key = analyze_detail @detail
     @on = hashvalue.dig("state", key)
-    gen_reskey("sens ")
+    gen_reskey("s")
     @state.merge! ({"on" => @on})
   end
 
-  def get_array(selectors)
+  def array(selectors)
     selectors.map { |key| @state[key] }
   end
 
-  def analyze_type type
+  def analyze_detail detail
     key = "status"
-    if type == "CLIPPresence"
+    if detail == "CLIPPresence"
       key = "presence"
-    elsif type == "Geofence"
+    elsif detail == "Geofence"
       key = "presence"
-    elsif type == "CLIPGenericFlag"
+    elsif detail == "CLIPGenericFlag"
       key = "flag"
-    elsif type == "Daylight"
+    elsif detail == "Daylight"
       key = "daylight"
     end
     key

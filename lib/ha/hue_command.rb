@@ -5,10 +5,11 @@ require_relative 'hue'
 class HueCommand < Thor
   desc "list", "list Hue items"
   def list
-    hue = Hue.new(context, Hue.get_bridge_state)
+    hue = Hue.new(context, Hue.bridge_state)
     table = CliTable.new
     table.headers = list_headers
-    table.rows =  hue.get_all_a list_headers
+    table.rows =  hue.all_a list_headers
+    table.column_widths = column_widths
     puts table.render
   end
 
@@ -24,6 +25,10 @@ class HueCommand < Thor
   end
 
   def list_headers
-    ["id", "name", "type", "on"]
+    ["id", "name", "on", "detail"]
+  end
+
+  def column_widths
+    ["5", "22", "12", "-30"]
   end
 end

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    Ha (0.3.0)
+    Ha (0.3.1)
       faraday (~> 0)
       thor (~> 0)
 
@@ -37,4 +37,4 @@ DEPENDENCIES
   ruby-debug-ide (~> 0)
 
 BUNDLED WITH
-   1.16.5
+   1.16.6

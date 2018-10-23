@@ -24,6 +24,7 @@ class CliTableTest < Minitest::Test
     end
 
     it "generate a simple table" do
+      @t2.column_widths = [20, 10, 10]
       res = @t2.render
       res.include?("a").must_equal true
     end

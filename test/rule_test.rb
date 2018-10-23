@@ -13,12 +13,12 @@ class RuleTest < Minitest::Test
 
     it "can return the name property" do
       rule = Rule.new(@key, @hash)
-      rule.get_array(["name"]).first.must_equal "RpsIphone"
+      rule.array(["name"]).first.must_equal "RpsIphone"
     end
 
     it "can return the On property" do
       rule = Rule.new(@key, @hash)
-      rule.get_array(["on"]).first.must_equal true
+      rule.array(["on"]).first.must_equal "enabled"
     end
   end
 end

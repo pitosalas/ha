@@ -3,6 +3,7 @@ require 'faraday'
 require_relative 'sensor'
 require_relative 'light'
 require_relative 'group'
+require_relative 'rule'
 
 BRIDGE_IP = "10.0.0.89"
 USERNAME = "78UEGUotX3otmWxbhiucELCLiiKmaD9E2O5YW-d1"
@@ -13,12 +14,12 @@ class Hue
   def initialize(context, bridge_state)
     @context = context
     @bridge_state = bridge_state
-    @groups = get_groups
-    @sensors = get_sensors
-    @lights = get_lights
+    @groups =  groups
+    @sensors =  sensors
+    @lights =  lights
   end
 
-  def self.get_bridge_state
+  def self.bridge_state
     unless defined? @bridge_state
       conn = Faraday.new(url: "http://#{BRIDGE_IP}")
       get = conn.get("/api/#{USERNAME}/")
@@ -32,37 +33,46 @@ class Hue
     @context.save
   end
 
-  def get_sensors
+  def sensors
     parsed = @bridge_state["sensors"]
     parsed.to_a.map { |sensor_pair| Sensor.new(*sensor_pair)}
   end
 
-  def get_lights
+  def lights
     parsed = @bridge_state["lights"]
     parsed.to_a.map { |light_pair| Light.new(*light_pair, @groups)}
   end
 
-  def get_groups
+  def groups
     parsed = @bridge_state["groups"]
     parsed.to_a.map { |group_pair| Group.new(*group_pair)}
   end
 
-  def get_all_a  selector
-    items = get_sensors_a selector
-    items += get_lights_a selector
-    items += get_groups_a selector
+  def rules
+    parsed = @bridge_state["rules"]
+    parsed.to_a.map { |rule_pair| Rule.new(*rule_pair)}
   end
 
-  def get_sensors_a selector
-    get_sensors.map { |sensor| sensor.get_array(selector)}
+  def all_a  selector
+    items =  sensors_a selector
+    items +=  lights_a selector
+    items +=  groups_a selector
+    items += rules_a selector
   end
 
-  def get_lights_a selector
-    get_lights.map { |light| light.get_array(selector)}
+  def sensors_a selector
+    sensors.map { |sensor| sensor.array(selector)}
   end
 
-  def get_groups_a selector
-    get_groups.map { |group| group.get_array(selector)}
+  def lights_a selector
+    lights.map { |light| light.array(selector)}
   end
 
+  def groups_a selector
+    groups.map { |group| group.array(selector)}
+  end
+
+  def rules_a selector
+    rules.map { |rule| rule.array(selector)}
+  end
 end

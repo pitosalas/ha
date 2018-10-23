@@ -1,15 +1,15 @@
 require_relative "hue_resource"
 class Group  < HueResource
-  attr_reader :type, :on, :name, :lights
+  attr_reader :detail, :on, :name, :lights
   def initialize(key, hashvalue)
     super
     @lights = hashvalue["lights"]
     @lights_s = hashvalue["lights"].join(",")
-    gen_reskey("grp  ")
-    @state.merge! ({"on" =>@lights_s, "name" => @name, "type" => @type})
+    gen_reskey("g")
+    @state.merge! ({"on" =>@lights_s, "name" => @name, "detail" => @detail})
   end
 
-  def get_array(selectors)
+  def array(selectors)
     selectors.map { |key| @state[key] }
   end
 

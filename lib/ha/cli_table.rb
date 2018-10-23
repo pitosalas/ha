@@ -1,5 +1,5 @@
 class CliTable
-  attr_accessor :headers, :rows
+  attr_accessor :headers, :rows, :column_widths
 
   def add(headers, rows)
     @headers = headers
@@ -9,6 +9,7 @@ class CliTable
   def rows_count
     @rows.length
   end
+
 
   def render
     result = header_render + "\n"
@@ -21,13 +22,13 @@ class CliTable
 
   def header_render
     result = ""
-    @headers.each { |h| result << (" %15s" % h)  }
+    @headers.each_index { |i| result << (" %#{column_widths[i]}s" % headers[i]) }
     result
   end
 
   def row_render row
     result = ""
-    row.each { |c| result << (" %15s" % format_value(c)) }
+    @headers.each_index { |i| result << (" %#{column_widths[i]}s" % format_value(row[i])) }
     result
   end
 

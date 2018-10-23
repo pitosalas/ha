@@ -1,15 +1,15 @@
 require_relative "hue_resource"
 class Rule  < HueResource
 
-  attr_reader :type, :on, :name, :lights
+  attr_reader :detail, :on, :name, :lights
   def initialize(key, hashvalue)
-    super
-    @rules = hashvalue["rules"]
-    gen_reskey("rul  ")
-    @state.merge! ({"on" =>@lights_s, "name" => @name, "type" => @type})
+    super(key, hashvalue)
+    @detail = "#{hashvalue["conditions"].length} conds => #{hashvalue["actions"].length} acts"
+    @state.merge! ({"on" => @hash_value["status"], "name" => @name, "detail" => @detail})
+    gen_reskey("r")
   end
 
-  def get_array(selectors)
+  def array(selectors)
     selectors.map { |key| @state[key] }
   end
 
